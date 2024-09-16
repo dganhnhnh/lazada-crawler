@@ -34,7 +34,7 @@ def parse_file_to_csv(input_file, output_file):
         csvwriter = csv.writer(csvfile, quoting=csv.QUOTE_MINIMAL)
 
         if os.stat(output_file).st_size == 0:
-            csvwriter.writerow(['Review', 'Rate'])
+            csvwriter.writerow(['Rate', 'Review'])
 
         in_review_section = False
         review_lines = []
@@ -45,7 +45,7 @@ def parse_file_to_csv(input_file, output_file):
             if line.isdigit():
                 if in_review_section and review_lines:
                     review = ' '.join(review_lines).strip()
-                    csvwriter.writerow([review, RATE])
+                    csvwriter.writerow([RATE, review])
                     review_lines = []
                 in_review_section = False 
                 continue
